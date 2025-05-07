@@ -2,7 +2,7 @@ import time
 import os
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
-from prompt_recall.parser import parse_chatgpt_markdown
+from prompt_recall.parser import parse_markdown_chat
 from prompt_recall.db import insert_chat_turns
 from prompt_recall.vectorstore import embed_and_store
 from prompt_recall.get_config import get_config
@@ -19,7 +19,8 @@ class MarkdownHandler(FileSystemEventHandler):
         if event.src_path.endswith(".md"):
             print(f"[Watcher] New markdown file detected: {event.src_path}")
             try:
-                turns = parse_chatgpt_markdown(event.src_path)
+                turns = parse_markdown_chat(event.src_path)
+                print(f"[Watcher] Parsed turns: {turns}")
                 insert_chat_turns(turns)
                 embed_and_store(turns)
                 print(f"[Watcher] Successfully processed: {event.src_path}")

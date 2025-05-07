@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS chat_turns (
     turn_index INT NOT NULL,
     role TEXT CHECK (role IN ('user', 'assistant')) NOT NULL,
     content TEXT NOT NULL,
-    embedding vector(1536),
+    embedding vector(1024),
     created_at TIMESTAMPTZ DEFAULT now()
 );
 

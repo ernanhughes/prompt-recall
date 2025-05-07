@@ -11,6 +11,9 @@ dependencies = [
     "watchdog",
     "jinja2",
     "numpy",
+    "ollama",
+    "python-dotenv",
+    "python-multipart",
     "requests"
 ]
 readme = "README.md"

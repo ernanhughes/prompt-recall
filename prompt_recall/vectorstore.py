@@ -3,11 +3,19 @@ import numpy as np
 import psycopg
 from typing import List
 from prompt_recall.db import connect
+import ollama
 
 # Dummy embedding generator — replace with real embedding model (e.g., Ollama)
-def get_embedding(text: str) -> List[float]:
-    # Return a placeholder vector — use your embedding model here
-    return np.random.rand(1536).tolist()
+def get_embedding(text):
+    try:
+        print(f"Generating embedding for text: {text}")
+        embedding_data = ollama.embeddings(model="mxbai-embed-large", prompt=text)
+        embedding_data = embedding_data["embedding"]  # Extract embedding
+        return embedding_data
+    except Exception as e:
+        print(f" Unexpected error generating embedding: {e}")
+    return None
+
 
 def embed_and_store(turns: List[dict]):
     from prompt_recall.db import connect

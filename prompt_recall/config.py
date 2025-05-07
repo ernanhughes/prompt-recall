@@ -6,12 +6,12 @@ from dataclasses import dataclass
 class Settings:
     db_host: str = os.getenv("DB_HOST", "localhost")
     db_name: str = os.getenv("DB_NAME", "prompt_recall")
-    db_user: str = os.getenv("DB_USER", "user")
-    db_password: str = os.getenv("DB_PASSWORD", "password")
+    db_user: str = os.getenv("DB_USER", "prompt_recall")
+    db_password: str = os.getenv("DB_PASSWORD", "prompt_recall")
     db_port: int = int(os.getenv("DB_PORT", "5432"))
     watch_dir: str = os.getenv("WATCH_DIR", "downloads")
     model_name: str = os.getenv("MODEL_NAME", "qwen3")
-    embedding_model: str = os.getenv("EMBEDDING_MODEL", "openai/text-embedding-ada-002")
+    embedding_model: str = os.getenv("EMBEDDING_MODEL", "mxbai-embed-large")
 
     @property
     def dsn(self):
